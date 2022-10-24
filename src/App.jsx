@@ -1,9 +1,14 @@
+import Login from './pages/Login';
+import Chat from './pages/Chat';
+import { useAuthContext } from './context/AuthContext';
+
 function App() {
+	const { user } = useAuthContext();
+
 	return (
-		<div>
-			<h1 className="text-5xl text-red-500">hola juliiii testing</h1>
-			<h1 className="text-5xl text-red-500">hola hernaaaaan testing</h1>
-		</div>
+		<main className="bg-slate-800 text-slate-200">
+			{user ? <Chat /> : <Login />}
+		</main>
 	);
 }
 
