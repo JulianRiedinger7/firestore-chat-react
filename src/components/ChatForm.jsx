@@ -11,20 +11,22 @@ const ChatForm = () => {
 		evt.preventDefault();
 		const date = Date.now();
 		const msgRef = collection(db, 'mensajes');
+		const msgValue = inputRef.current.value;
+		inputRef.current.value = '';
 		await addDoc(msgRef, {
 			username: user.displayName,
 			uid: user.uid,
 			avatar: user.photoURL,
-			message: inputRef.current.value,
+			message: msgValue,
 			timestamp: new Intl.DateTimeFormat('en-US', {
 				day: '2-digit',
 				month: '2-digit',
 				year: 'numeric',
 				hour: '2-digit',
 				minute: '2-digit',
+				second: '2-digit',
 			}).format(date),
 		});
-		inputRef.current.value = '';
 	};
 
 	return (
