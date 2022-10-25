@@ -2,15 +2,17 @@ import { addDoc, collection } from 'firebase/firestore';
 import { useRef } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import { db } from '../firebase/firebase';
+import { useChannelContext } from '../context/ChannelContext';
 
 const ChatForm = () => {
 	const inputRef = useRef();
 	const { user } = useAuthContext();
+	const { activeChannel } = useChannelContext();
 
 	const handleMessage = async (evt) => {
 		evt.preventDefault();
 		const date = Date.now();
-		const msgRef = collection(db, 'mensajes');
+		const msgRef = collection(db, `canales/${activeChannel}/mensajes`);
 		const msgValue = inputRef.current.value;
 		inputRef.current.value = '';
 		await addDoc(msgRef, {
@@ -35,6 +37,7 @@ const ChatForm = () => {
 				type="text"
 				placeholder="Escribe un mensaje 😀"
 				className="bg-slate-700 p-1 py-2 text-white flex-1 w-full rounded-md"
+				required
 				ref={inputRef}
 			/>
 			<button

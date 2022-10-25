@@ -1,11 +1,15 @@
 import { FcGoogle } from 'react-icons/fc';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+	const navigate = useNavigate();
+
 	const login = async () => {
 		const provider = new GoogleAuthProvider();
 		await signInWithPopup(auth, provider);
+		return navigate('/');
 	};
 
 	return (

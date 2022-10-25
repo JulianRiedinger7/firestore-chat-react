@@ -1,19 +1,28 @@
 import { useAuthContext } from '../context/AuthContext';
-import { IoIosExit } from 'react-icons/io';
+import { IoIosExit, IoMdChatboxes } from 'react-icons/io';
 import { auth } from '../firebase/firebase';
+import { Link } from 'react-router-dom';
+import SelectChannel from './SelectChannel';
 
 const Header = () => {
 	const { user } = useAuthContext();
 
 	return (
 		<header className="bg-slate-700 h-20 flex items-center justify-between px-4 text-white">
-			<span className="text-4xl">❄</span>
+			<IoMdChatboxes size={45} color={'#06B6D4'} />
 			<nav>
 				<ul className="flex items-center gap-3">
 					<li>
-						<button className="bg-cyan-500 text-white px-3 py-1 font-medium rounded-lg">
+						<SelectChannel />
+					</li>
+
+					<li>
+						<Link
+							to="/create-channel"
+							className="bg-cyan-500 text-white px-3 py-1 font-medium rounded-lg"
+						>
 							Crear Canal
-						</button>
+						</Link>
 					</li>
 					<li>
 						<button
