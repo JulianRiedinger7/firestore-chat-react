@@ -4,6 +4,8 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { useAuthContext } from '../context/AuthContext';
 import { v4 } from 'uuid';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ChannelForm = () => {
 	const navigate = useNavigate();
@@ -15,6 +17,10 @@ const ChannelForm = () => {
 		const channelName = nameRef.current.value;
 		nameRef.current.value = '';
 		const channelRef = doc(db, `canales/${channelName}`);
+		toast.success(`Canal ${channelName} creado correctamente!`, {
+			position: 'top-center',
+			autoClose: 1500,
+		});
 		await setDoc(channelRef, {
 			id: `canal-${v4()}`,
 			nombre: channelName,

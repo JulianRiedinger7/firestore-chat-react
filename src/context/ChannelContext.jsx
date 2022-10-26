@@ -4,9 +4,14 @@ const ChannelContext = createContext();
 
 export const ChannelContextProvider = ({ children }) => {
 	const [activeChannel, setActiveChannel] = useState('');
+	const [msgToEdit, setMsgToEdit] = useState('');
 
 	const changeActiveChannel = (channel) => {
 		setActiveChannel(channel);
+	};
+
+	const changeMsgToEdit = (msg) => {
+		setMsgToEdit(msg);
 	};
 
 	return (
@@ -14,6 +19,8 @@ export const ChannelContextProvider = ({ children }) => {
 			value={{
 				activeChannel,
 				changeActiveChannel,
+				msgToEdit,
+				changeMsgToEdit,
 			}}
 		>
 			{children}
