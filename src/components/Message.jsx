@@ -49,12 +49,12 @@ const Message = ({ username, avatar, timestamp, message, uid, id, edited }) => {
 						<div className="flex gap-5">
 							<AiFillEdit
 								size={20}
-								className="cursor-pointer hover:text-cyan-500 transition-all ease-in-out"
+								className="cursor-pointer text-slate-400 hover:text-cyan-500 transition-all ease-in-out"
 								onClick={handleEdit}
 							/>
 							<AiFillDelete
 								size={20}
-								className="cursor-pointer hover:text-cyan-500 transition-all ease-in-out"
+								className="cursor-pointer text-slate-400 hover:text-cyan-500 transition-all ease-in-out"
 								onClick={handleDelete}
 							/>
 						</div>
@@ -63,9 +63,13 @@ const Message = ({ username, avatar, timestamp, message, uid, id, edited }) => {
 			</div>
 			<p className="pt-3">
 				{message}
-				<span className="italic text-xs">{edited ? ' (editado)' : ''}</span>
+				<span className="italic text-xs text-slate-400 font-medium">
+					{edited ? ' (editado)' : ''}
+				</span>
 			</p>
-			<p className="self-end text-sm italic font-medium">{timestamp}</p>
+			<p className="italic text-xs text-slate-400 self-end font-medium">
+				{timestamp}
+			</p>
 		</div>
 	);
 };

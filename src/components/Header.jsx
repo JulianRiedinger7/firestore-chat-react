@@ -1,6 +1,5 @@
 import { useAuthContext } from '../context/AuthContext';
-import { IoIosExit, IoMdChatboxes } from 'react-icons/io';
-import { auth } from '../firebase/firebase';
+import { IoMdChatboxes } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import SelectChannel from './SelectChannel';
 
@@ -15,30 +14,14 @@ const Header = () => {
 					<li>
 						<SelectChannel />
 					</li>
-
 					<li>
-						<Link
-							to="/create-channel"
-							className="bg-cyan-500 text-white px-3 py-1 font-medium rounded-lg"
-						>
-							Crear Canal
+						<Link to="/dashboard">
+							<img
+								src={user.photoURL}
+								alt={user.displayName}
+								className="w-12 aspect-square rounded-full"
+							/>
 						</Link>
-					</li>
-					<li>
-						<button
-							className="flex items-center gap-1 bg-red-500 px-3 py-1 rounded-lg text-center font-medium"
-							onClick={() => auth.signOut()}
-						>
-							<IoIosExit size={25} />
-							Salir
-						</button>
-					</li>
-					<li>
-						<img
-							src={user.photoURL}
-							alt={user.displayName}
-							className="w-12 aspect-square rounded-full"
-						/>
 					</li>
 				</ul>
 			</nav>

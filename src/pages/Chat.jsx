@@ -6,6 +6,7 @@ import Message from '../components/Message';
 import { HashLoader } from 'react-spinners';
 import { useChannelContext } from '../context/ChannelContext';
 import { BsFillArrowUpCircleFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 const Chat = () => {
 	const [allMessages, setAllMessages] = useState([]);
@@ -37,8 +38,15 @@ const Chat = () => {
 	if (!activeChannel)
 		return (
 			<div className="h-[calc(100vh-80px)] flex flex-col justify-center items-center">
-				<h2 className="text-xl font-medium flex items-center justify-center gap-4">
-					Selecciona o crea un canal para comenzar a chatear
+				<h2 className="text-xl font-medium flex items-center justify-center gap-1">
+					Selecciona o
+					<Link
+						to="/dashboard"
+						className="text-cyan-500 hover:text-cyan-700 transition-all ease-in-out"
+					>
+						crea
+					</Link>
+					un canal para comenzar a chatear
 					<BsFillArrowUpCircleFill size={30} />
 				</h2>
 			</div>
