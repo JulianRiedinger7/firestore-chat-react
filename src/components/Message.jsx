@@ -8,7 +8,7 @@ import { useChannelContext } from '../context/ChannelContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Message = ({ username, avatar, timestamp, message, uid, id }) => {
+const Message = ({ username, avatar, timestamp, message, uid, id, edited }) => {
 	const msgRef = useRef();
 	const { user } = useAuthContext();
 	const { activeChannel, changeMsgToEdit } = useChannelContext();
@@ -61,7 +61,10 @@ const Message = ({ username, avatar, timestamp, message, uid, id }) => {
 					)}
 				</div>
 			</div>
-			<p className="pt-3">{message}</p>
+			<p className="pt-3">
+				{message}
+				<span className="italic text-xs">{edited ? ' (editado)' : ''}</span>
+			</p>
 			<p className="self-end text-sm italic font-medium">{timestamp}</p>
 		</div>
 	);

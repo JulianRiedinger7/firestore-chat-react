@@ -23,6 +23,7 @@ const ChatForm = () => {
 			await updateDoc(msgRef, {
 				...msgToEdit,
 				message: msgValue,
+				edited: true,
 			});
 			toast.success('Mensaje editado correctmente!', {
 				position: 'top-center',
