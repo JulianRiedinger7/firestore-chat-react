@@ -21,7 +21,6 @@ const SelectChannel = () => {
 	};
 
 	const handleChange = (evt) => {
-		console.log(evt.target.value);
 		changeActiveChannel(evt.target.value);
 	};
 

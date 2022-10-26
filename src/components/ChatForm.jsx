@@ -35,7 +35,7 @@ const ChatForm = () => {
 		<form onSubmit={handleMessage} className="flex w-screen px-4 pb-4">
 			<input
 				type="text"
-				placeholder="Escribe un mensaje 😀"
+				placeholder={`Escribe un mensaje en ${activeChannel} 😀`}
 				className="bg-slate-700 p-1 py-2 text-white flex-1 w-full rounded-md"
 				required
 				ref={inputRef}

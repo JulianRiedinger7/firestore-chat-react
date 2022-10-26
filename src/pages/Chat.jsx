@@ -1,16 +1,11 @@
-import {
-	collection,
-	getDocs,
-	onSnapshot,
-	orderBy,
-	query,
-} from 'firebase/firestore';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from '../firebase/firebase';
 import ChatForm from '../components/ChatForm';
 import Message from '../components/Message';
 import { HashLoader } from 'react-spinners';
 import { useChannelContext } from '../context/ChannelContext';
+import { BsFillArrowUpCircleFill } from 'react-icons/bs';
 
 const Chat = () => {
 	const [allMessages, setAllMessages] = useState([]);
@@ -41,8 +36,11 @@ const Chat = () => {
 
 	if (!activeChannel)
 		return (
-			<div className="h-[calc(100vh-80px)]">
-				<h2>Selecciona una canal para chatear</h2>
+			<div className="h-[calc(100vh-80px)] flex flex-col justify-center items-center">
+				<h2 className="text-xl font-medium flex items-center justify-center gap-4">
+					Selecciona o crea un canal para comenzar a chatear
+					<BsFillArrowUpCircleFill size={30} />
+				</h2>
 			</div>
 		);
 
