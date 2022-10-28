@@ -7,10 +7,12 @@ const Header = () => {
 	const { user } = useAuthContext();
 
 	return (
-		<header className="bg-slate-700 h-20 flex items-center justify-between px-4 text-white">
-			<IoMdChatboxes size={45} color={'#06B6D4'} />
+		<header className="bg-slate-700 h-20 p-4 text-white">
 			<nav>
-				<ul className="flex items-center gap-3">
+				<ul className="flex justify-between items-center gap-3 flex-1 w-full">
+					<li>
+						<IoMdChatboxes size={45} color={'#06B6D4'} />
+					</li>
 					<li>
 						<SelectChannel />
 					</li>

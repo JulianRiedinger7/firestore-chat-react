@@ -8,7 +8,16 @@ import { useChannelContext } from '../context/ChannelContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Message = ({ username, avatar, timestamp, message, uid, id, edited }) => {
+const Message = ({
+	username,
+	avatar,
+	timestamp,
+	message,
+	uid,
+	id,
+	edited,
+	file,
+}) => {
 	const msgRef = useRef();
 	const { user } = useAuthContext();
 	const { activeChannel, changeMsgToEdit } = useChannelContext();
@@ -43,7 +52,7 @@ const Message = ({ username, avatar, timestamp, message, uid, id, edited }) => {
 					alt={username}
 					className="w-10 aspect-square rounded-full"
 				/>
-				<div className="max-w-7xl flex justify-between items-center flex-1">
+				<div className=" flex justify-between items-center flex-1">
 					<h3 className="font-medium">{username}</h3>
 					{user.uid === uid && (
 						<div className="flex gap-5">
@@ -61,12 +70,19 @@ const Message = ({ username, avatar, timestamp, message, uid, id, edited }) => {
 					)}
 				</div>
 			</div>
-			<p className="pt-3">
-				{message}
-				<span className="italic text-xs text-slate-400 font-medium">
-					{edited ? ' (editado)' : ''}
-				</span>
-			</p>
+			{file && (
+				<a href={file} target="_blank" className="w-fit">
+					<img src={file} alt={uid} className="max-w-sm lg:max-w-xl pt-3" />
+				</a>
+			)}
+			{message && (
+				<p className="pt-3">
+					{message}
+					<span className="italic text-xs text-slate-400 font-medium">
+						{edited ? ' (editado)' : ''}
+					</span>
+				</p>
+			)}
 			<p className="italic text-xs text-slate-400 self-end font-medium">
 				{timestamp}
 			</p>

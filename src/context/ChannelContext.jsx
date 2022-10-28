@@ -1,4 +1,7 @@
 import { createContext, useContext, useState } from 'react';
+import { storage } from '../firebase/firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { v4 } from 'uuid';
 
 const ChannelContext = createContext();
 
@@ -14,6 +17,12 @@ export const ChannelContextProvider = ({ children }) => {
 		setMsgToEdit(msg);
 	};
 
+	const uploadFile = async (file) => {
+		const storageRef = ref(storage, `imagenes/${v4()}`);
+		await uploadBytes(storageRef, file);
+		return getDownloadURL(storageRef);
+	};
+
 	return (
 		<ChannelContext.Provider
 			value={{
@@ -21,6 +30,7 @@ export const ChannelContextProvider = ({ children }) => {
 				changeActiveChannel,
 				msgToEdit,
 				changeMsgToEdit,
+				uploadFile,
 			}}
 		>
 			{children}

@@ -37,17 +37,16 @@ const Chat = () => {
 
 	if (!activeChannel)
 		return (
-			<div className="h-[calc(100vh-80px)] flex flex-col justify-center items-center">
-				<h2 className="text-xl font-medium flex items-center justify-center gap-1">
-					Selecciona o
+			<div className="h-[calc(100vh-80px)] flex justify-center items-center">
+				<h2 className="text-lg md:text-xl font-medium space-x-2">
+					<span>Selecciona o</span>
 					<Link
 						to="/dashboard"
 						className="text-cyan-500 hover:text-cyan-700 transition-all ease-in-out"
 					>
 						crea
 					</Link>
-					un canal para comenzar a chatear
-					<BsFillArrowUpCircleFill size={30} />
+					<span>un canal para comenzar a chatear</span>
 				</h2>
 			</div>
 		);

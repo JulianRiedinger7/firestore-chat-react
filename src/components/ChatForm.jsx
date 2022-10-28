@@ -8,8 +8,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ChatForm = () => {
 	const [inputMessage, setInputMessage] = useState('');
+	const [fileURL, setFileURL] = useState('');
 	const { user } = useAuthContext();
-	const { activeChannel, msgToEdit, changeMsgToEdit } = useChannelContext();
+	const { activeChannel, msgToEdit, changeMsgToEdit, uploadFile } =
+		useChannelContext();
 
 	const handleMessage = async (evt) => {
 		evt.preventDefault();
@@ -33,11 +35,14 @@ const ChatForm = () => {
 		} else {
 			const date = Date.now();
 			const msgRef = collection(db, `canales/${activeChannel}/mensajes`);
+			const imgURL = fileURL;
+			setFileURL('');
 			await addDoc(msgRef, {
 				username: user.displayName,
 				uid: user.uid,
 				avatar: user.photoURL,
 				message: msgValue,
+				file: imgURL,
 				timestamp: new Intl.DateTimeFormat('en-US', {
 					day: '2-digit',
 					month: '2-digit',
@@ -50,6 +55,22 @@ const ChatForm = () => {
 		}
 	};
 
+	const handleFileChange = async (evt) => {
+		setInputMessage('');
+		setFileURL('');
+		try {
+			const result = await uploadFile(evt.target.files[0]);
+			setFileURL(result);
+			setInputMessage(evt.target.files[0].name);
+			evt.target.value = null;
+		} catch (error) {
+			toast.error('Ha ocurrido un error, intentalo mas tarde', {
+				position: 'top-center',
+				autoClose: 2500,
+			});
+		}
+	};
+
 	useEffect(() => {
 		if (msgToEdit) {
 			setInputMessage(msgToEdit.message);
@@ -57,15 +78,28 @@ const ChatForm = () => {
 	}, [msgToEdit]);
 
 	return (
-		<form onSubmit={handleMessage} className="flex w-screen px-4 pb-4">
+		<form
+			onSubmit={handleMessage}
+			className="flex items-center w-screen px-4 pb-4"
+		>
 			<input
 				type="text"
 				placeholder={`Escribe un mensaje en ${activeChannel} 😀`}
-				className="bg-slate-700 p-1 py-2 text-white flex-1 w-full rounded-md"
+				className="bg-slate-700 p-1 py-2 pl-10 text-white flex-1 w-full rounded-md placeholder:text-xs md:placeholder:text-sm"
 				required
 				value={inputMessage}
 				onChange={(evt) => setInputMessage(evt.target.value)}
 			/>
+			<div className="bg-gray-500 w-6 h-6 rounded-full absolute left-5 cursor-pointer">
+				<p className="text-2xl font-bold w-full absolute flex justify-center leading-5 cursor-pointer ">
+					+
+				</p>
+				<input
+					type="file"
+					className="bg-gray-500 w-full rounded-full absolute left-0 top-0 bottom-0 right-0 opacity-0 cursor-pointer"
+					onChange={handleFileChange}
+				/>
+			</div>
 			<button
 				type="submit"
 				className="bg-cyan-500 text-white px-4 py-2 font-medium rounded-md"
