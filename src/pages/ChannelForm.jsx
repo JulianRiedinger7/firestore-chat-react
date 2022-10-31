@@ -32,7 +32,10 @@ const ChannelForm = () => {
 
 	return (
 		<div className="h-[calc(100vh-80px)] flex flex-col items-center justify-center">
-			<button className="fixed left-5 top-28" onClick={() => navigate(-1)}>
+			<button
+				className="fixed top-24 left-5 px-4 py-2 rounded-lg bg-cyan-500 font-medium"
+				onClick={() => navigate(-1)}
+			>
 				Volver
 			</button>
 
@@ -46,7 +49,7 @@ const ChannelForm = () => {
 				<input
 					type="text"
 					placeholder="Nombre..."
-					className="bg-slate-700 p-1 py-2 text-white flex-1 w-72 md:w-80 lg:w-96 rounded-md"
+					className="dark:bg-slate-700 bg-slate-300 p-1 py-2 text-white flex-1 w-72 md:w-80 lg:w-96 rounded-md"
 					required
 					ref={nameRef}
 				/>

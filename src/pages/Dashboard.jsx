@@ -7,7 +7,10 @@ const Dashboard = () => {
 
 	return (
 		<div className="h-[calc(100vh-80px)] flex gap-20 justify-center items-center">
-			<button onClick={() => navigate(-1)} className="fixed top-24 left-5">
+			<button
+				onClick={() => navigate(-1)}
+				className="fixed top-24 left-5 px-4 py-2 rounded-lg bg-cyan-500 font-medium"
+			>
 				Volver
 			</button>
 			<Link

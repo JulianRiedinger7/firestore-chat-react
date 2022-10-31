@@ -9,7 +9,7 @@ import Dashboard from './pages/Dashboard';
 
 function App() {
 	return (
-		<main className="bg-slate-800 text-slate-200">
+		<main className="dark:bg-slate-800 dark:text-slate-200 bg-gray-100 transition-all ease-in-out">
 			<Routes>
 				<Route
 					path="/"

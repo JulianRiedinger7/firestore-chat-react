@@ -4,7 +4,7 @@ import { AiFillEdit } from 'react-icons/ai';
 import { AiFillDelete } from 'react-icons/ai';
 import { deleteDoc, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
-import { useChannelContext } from '../context/ChannelContext';
+import { useChatContext } from '../context/ChatContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -20,7 +20,7 @@ const Message = ({
 }) => {
 	const msgRef = useRef();
 	const { user } = useAuthContext();
-	const { activeChannel, changeMsgToEdit } = useChannelContext();
+	const { activeChannel, changeMsgToEdit } = useChatContext();
 
 	useEffect(() => {
 		msgRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });

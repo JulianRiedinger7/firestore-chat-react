@@ -4,13 +4,12 @@ import { db } from '../firebase/firebase';
 import ChatForm from '../components/ChatForm';
 import Message from '../components/Message';
 import { HashLoader } from 'react-spinners';
-import { useChannelContext } from '../context/ChannelContext';
-import { BsFillArrowUpCircleFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { useChatContext } from '../context/ChatContext';
 
 const Chat = () => {
 	const [allMessages, setAllMessages] = useState([]);
-	const { activeChannel } = useChannelContext();
+	const { activeChannel } = useChatContext();
 
 	const getMessages = async () => {
 		if (activeChannel) {
@@ -59,7 +58,7 @@ const Chat = () => {
 				</div>
 			) : (
 				<>
-					<ul className="px-4 pt-5 h-[calc(80vh)] overflow-scroll overflow-x-hidden scrollbar scrollbar-thumb-cyan-500 scrollbar-track-gray-900">
+					<ul className="px-4 pt-5 h-[calc(80vh)] overflow-scroll overflow-x-hidden scrollbar scrollbar-thumb-cyan-500 dark:scrollbar-track-gray-900 scrollbar-track-gray-200">
 						{allMessages.map((message) => (
 							<Message key={message.id} {...message} />
 						))}

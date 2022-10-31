@@ -3,9 +3,9 @@ import { storage } from '../firebase/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
 
-const ChannelContext = createContext();
+const ChatContext = createContext();
 
-export const ChannelContextProvider = ({ children }) => {
+export const ChatContextProvider = ({ children }) => {
 	const [activeChannel, setActiveChannel] = useState('');
 	const [msgToEdit, setMsgToEdit] = useState('');
 
@@ -24,7 +24,7 @@ export const ChannelContextProvider = ({ children }) => {
 	};
 
 	return (
-		<ChannelContext.Provider
+		<ChatContext.Provider
 			value={{
 				activeChannel,
 				changeActiveChannel,
@@ -34,15 +34,15 @@ export const ChannelContextProvider = ({ children }) => {
 			}}
 		>
 			{children}
-		</ChannelContext.Provider>
+		</ChatContext.Provider>
 	);
 };
 
-export const useChannelContext = () => {
-	const context = useContext(ChannelContext);
+export const useChatContext = () => {
+	const context = useContext(ChatContext);
 
 	if (!context)
-		throw new Error('useChannelContext must be used within an ChannelProvider');
+		throw new Error('useChatContext must be used within an ChannelProvider');
 
 	return context;
 };

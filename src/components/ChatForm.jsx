@@ -2,7 +2,7 @@ import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import { db } from '../firebase/firebase';
-import { useChannelContext } from '../context/ChannelContext';
+import { useChatContext } from '../context/ChatContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,7 +11,7 @@ const ChatForm = () => {
 	const [fileURL, setFileURL] = useState('');
 	const { user } = useAuthContext();
 	const { activeChannel, msgToEdit, changeMsgToEdit, uploadFile } =
-		useChannelContext();
+		useChatContext();
 
 	const handleMessage = async (evt) => {
 		evt.preventDefault();
@@ -85,7 +85,7 @@ const ChatForm = () => {
 			<input
 				type="text"
 				placeholder={`Escribe un mensaje en ${activeChannel} 😀`}
-				className="bg-slate-700 p-1 py-2 pl-10 text-white flex-1 w-full rounded-md placeholder:text-xs md:placeholder:text-sm"
+				className="dark:bg-slate-700 p-1 py-2 pl-10 dark:text-white dark:placeholder:text-slate-400 bg-slate-300 flex-1 w-full rounded-md placeholder:text-xs md:placeholder:text-sm xl:placeholder:text-lg placeholder:text-slate-800 placeholder:font-medium"
 				required
 				value={inputMessage}
 				onChange={(evt) => setInputMessage(evt.target.value)}
