@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 const Header = () => {
-	const [darkMode, setDarkMode] = useState(true);
+	const [darkMode, setDarkMode] = useState(false);
 	const { user } = useAuthContext();
 
 	useEffect(() => {
@@ -16,7 +16,7 @@ const Header = () => {
 		} else {
 			document.documentElement.classList.remove('dark');
 		}
-	});
+	}, [darkMode]);
 
 	return (
 		<header className="dark:bg-slate-700 h-20 p-4 dark:text-white shadow-xl text-black">

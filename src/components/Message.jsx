@@ -72,7 +72,7 @@ const Message = ({
 			</div>
 			{file && (
 				<a href={file} target="_blank" className="w-fit">
-					<img src={file} alt={uid} className="max-w-sm lg:max-w-xl pt-3" />
+					<img src={file} alt={uid} className="max-w-xs lg:max-w-xl pt-3" />
 				</a>
 			)}
 			{message && (

@@ -2,15 +2,18 @@ import { createContext, useContext, useState } from 'react';
 import { storage } from '../firebase/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 
 const ChatContext = createContext();
 
 export const ChatContextProvider = ({ children }) => {
 	const [activeChannel, setActiveChannel] = useState('');
 	const [msgToEdit, setMsgToEdit] = useState('');
+	const navigate = useNavigate();
 
 	const changeActiveChannel = (channel) => {
 		setActiveChannel(channel);
+		navigate('/');
 	};
 
 	const changeMsgToEdit = (msg) => {
