@@ -8,7 +8,9 @@ const ChatContext = createContext();
 
 export const ChatContextProvider = ({ children }) => {
 	const [activeChannel, setActiveChannel] = useState('');
+	const [inputMessage, setInputMessage] = useState('');
 	const [msgToEdit, setMsgToEdit] = useState('');
+	const [fileURL, setFileURL] = useState('');
 	const navigate = useNavigate();
 
 	const changeActiveChannel = (channel) => {
@@ -34,6 +36,10 @@ export const ChatContextProvider = ({ children }) => {
 				msgToEdit,
 				changeMsgToEdit,
 				uploadFile,
+				fileURL,
+				setFileURL,
+				inputMessage,
+				setInputMessage,
 			}}
 		>
 			{children}

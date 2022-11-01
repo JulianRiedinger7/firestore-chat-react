@@ -7,54 +7,63 @@ import { toast } from 'react-toastify';
 import { MdOutlineEmojiEmotions } from 'react-icons/md';
 import 'react-toastify/dist/ReactToastify.css';
 import EmojiPicker from 'emoji-picker-react';
+import Popup from './Popup';
 
 const ChatForm = () => {
-	const [inputMessage, setInputMessage] = useState('');
 	const [showPicker, setShowPicker] = useState(false);
-	const [fileURL, setFileURL] = useState('');
 	const { user } = useAuthContext();
-	const { activeChannel, msgToEdit, changeMsgToEdit, uploadFile } =
-		useChatContext();
+	const {
+		activeChannel,
+		msgToEdit,
+		changeMsgToEdit,
+		uploadFile,
+		fileURL,
+		setFileURL,
+		inputMessage,
+		setInputMessage,
+	} = useChatContext();
 
 	const handleMessage = async (evt) => {
 		evt.preventDefault();
 		const msgValue = inputMessage;
 		setInputMessage('');
-		if (msgToEdit) {
-			const msgRef = doc(
-				db,
-				`canales/${activeChannel}/mensajes/${msgToEdit.id}`
-			);
-			await updateDoc(msgRef, {
-				...msgToEdit,
-				message: msgValue,
-				edited: true,
-			});
-			toast.success('Mensaje editado correctmente!', {
-				position: 'top-center',
-				autoClose: 1500,
-			});
-			changeMsgToEdit('');
-		} else {
-			const date = Date.now();
-			const msgRef = collection(db, `canales/${activeChannel}/mensajes`);
-			const imgURL = fileURL;
-			setFileURL('');
-			await addDoc(msgRef, {
-				username: user.displayName,
-				uid: user.uid,
-				avatar: user.photoURL,
-				message: msgValue,
-				file: imgURL,
-				timestamp: new Intl.DateTimeFormat('en-US', {
-					day: '2-digit',
-					month: '2-digit',
-					year: 'numeric',
-					hour: '2-digit',
-					minute: '2-digit',
-					second: '2-digit',
-				}).format(date),
-			});
+		if (msgValue || fileURL) {
+			if (msgToEdit) {
+				const msgRef = doc(
+					db,
+					`canales/${activeChannel}/mensajes/${msgToEdit.id}`
+				);
+				await updateDoc(msgRef, {
+					...msgToEdit,
+					message: msgValue,
+					edited: true,
+				});
+				toast.success('Mensaje editado correctmente!', {
+					position: 'top-center',
+					autoClose: 1500,
+				});
+				changeMsgToEdit('');
+			} else {
+				const date = Date.now();
+				const msgRef = collection(db, `canales/${activeChannel}/mensajes`);
+				const imgURL = fileURL;
+				setFileURL('');
+				await addDoc(msgRef, {
+					username: user.displayName,
+					uid: user.uid,
+					avatar: user.photoURL,
+					message: msgValue,
+					file: imgURL,
+					timestamp: new Intl.DateTimeFormat('en-US', {
+						day: '2-digit',
+						month: '2-digit',
+						year: 'numeric',
+						hour: '2-digit',
+						minute: '2-digit',
+						second: '2-digit',
+					}).format(date),
+				});
+			}
 		}
 	};
 
@@ -94,6 +103,7 @@ const ChatForm = () => {
 
 	return (
 		<>
+			{fileURL && <Popup />}
 			{showPicker && (
 				<div className="absolute right-10 bottom-20">
 					<EmojiPicker height={350} width={300} onEmojiClick={addEmoji} />
@@ -107,7 +117,6 @@ const ChatForm = () => {
 					type="text"
 					placeholder={`Escribe un mensaje en ${activeChannel} 😀`}
 					className="dark:bg-slate-700 p-1 py-2 pl-10 dark:text-white dark:placeholder:text-slate-400 bg-slate-300 flex-1 w-full rounded-md placeholder:text-xs md:placeholder:text-sm xl:placeholder:text-lg placeholder:text-slate-800 placeholder:font-medium"
-					required
 					value={inputMessage}
 					onChange={(evt) => setInputMessage(evt.target.value)}
 				/>
