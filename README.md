@@ -1,5 +1,8 @@
 <h1 align='center'>Chat App</h1>
+
 ![captura del proyecto](/public/captura.png)
+
+---
 
 ### Caracteristicas Principales:
 
@@ -17,6 +20,8 @@
 - Firebase (Firestore, Storage y Auth)
 - Tailwind CSS
 
+---
+
 ### Librerias Adicionales:
 
 - react-firebase-hooks
@@ -26,9 +31,13 @@
 - react-toastify
 - uuid
 
+---
+
 ### Deploy:
 
 La aplicación fue deployada en **_Vercel_** y puede ser visitado haciendo click [aqui](https://firestore-chat-react.vercel.app/)
+
+---
 
 ### ¿Como puedo probarlo en mi PC?
 
