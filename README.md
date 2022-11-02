@@ -1,5 +1,5 @@
 <h1 align='center'>Chat App</h1>
-<p align='center'>Aplicacion de mensajeria instantanea</p>
+<p align='center'>Aplicacion de mensajeria instantanea realizada en conjunto con Hernan Santarelli</p>
 
 ![captura del proyecto](/public/captura.png)
 
