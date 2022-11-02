@@ -36,7 +36,7 @@ const Chat = () => {
 
 	if (!activeChannel)
 		return (
-			<div className="h-[calc(100vh-80px)] flex justify-center items-center overflow-y-hidden">
+			<div className="h-[calc(100vh-80px)] flex justify-center items-center">
 				<h2 className="text-lg md:text-xl font-medium space-x-2">
 					<span>Selecciona o</span>
 					<Link
