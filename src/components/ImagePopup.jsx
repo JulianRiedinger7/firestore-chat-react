@@ -1,7 +1,7 @@
 import { useChatContext } from '../context/ChatContext';
 import { ImCancelCircle } from 'react-icons/im';
 
-const Popup = () => {
+const ImagePopup = () => {
 	const { fileURL, setFileURL, setInputMessage } = useChatContext();
 
 	const handleDelete = () => {
@@ -27,4 +27,4 @@ const Popup = () => {
 	);
 };
 
-export default Popup;
+export default ImagePopup;

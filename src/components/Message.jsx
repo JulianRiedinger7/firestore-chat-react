@@ -56,11 +56,13 @@ const Message = ({
 					<h3 className="font-medium">{username}</h3>
 					{user.uid === uid && (
 						<div className="flex gap-5">
-							<AiFillEdit
-								size={20}
-								className="cursor-pointer text-slate-400 hover:text-cyan-500 transition-all ease-in-out"
-								onClick={handleEdit}
-							/>
+							{!file && (
+								<AiFillEdit
+									size={20}
+									className="cursor-pointer text-slate-400 hover:text-cyan-500 transition-all ease-in-out"
+									onClick={handleEdit}
+								/>
+							)}
 							<AiFillDelete
 								size={20}
 								className="cursor-pointer text-slate-400 hover:text-cyan-500 transition-all ease-in-out"

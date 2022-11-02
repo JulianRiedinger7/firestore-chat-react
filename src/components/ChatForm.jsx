@@ -5,9 +5,10 @@ import { db } from '../firebase/firebase';
 import { useChatContext } from '../context/ChatContext';
 import { toast } from 'react-toastify';
 import { MdOutlineEmojiEmotions } from 'react-icons/md';
+import { RiSendPlaneFill } from 'react-icons/ri';
 import 'react-toastify/dist/ReactToastify.css';
 import EmojiPicker from 'emoji-picker-react';
-import Popup from './Popup';
+import ImagePopup from './ImagePopup';
 
 const ChatForm = () => {
 	const [showPicker, setShowPicker] = useState(false);
@@ -68,7 +69,6 @@ const ChatForm = () => {
 	};
 
 	const handleFileChange = async (evt) => {
-		setInputMessage('');
 		setFileURL('');
 		if (!evt.target.files[0].type.includes('image')) {
 			evt.target.value = null;
@@ -80,7 +80,6 @@ const ChatForm = () => {
 		try {
 			const result = await uploadFile(evt.target.files[0]);
 			setFileURL(result);
-			setInputMessage(evt.target.files[0].name);
 			evt.target.value = null;
 		} catch (error) {
 			toast.error('Ha ocurrido un error, intentalo mas tarde', {
@@ -103,7 +102,7 @@ const ChatForm = () => {
 
 	return (
 		<>
-			{fileURL && <Popup />}
+			{fileURL && <ImagePopup />}
 			{showPicker && (
 				<div className="absolute right-10 bottom-20">
 					<EmojiPicker height={350} width={300} onEmojiClick={addEmoji} />
@@ -132,17 +131,19 @@ const ChatForm = () => {
 				</div>
 
 				<MdOutlineEmojiEmotions
-					className="cursor-pointer"
+					className="cursor-pointer mx-1"
 					size={30}
 					onClick={() => setShowPicker(!showPicker)}
 				/>
 
-				<button
-					type="submit"
-					className="bg-cyan-500 text-white px-4 py-2 font-medium rounded-md"
-				>
-					{msgToEdit ? 'Editar' : 'Enviar'}
-				</button>
+				<div className="bg-cyan-500 rounded-lg px-2 py-1">
+					<RiSendPlaneFill
+						type="submit"
+						size={30}
+						color={'#fff'}
+						className="cursor-pointer"
+					/>
+				</div>
 			</form>
 		</>
 	);
