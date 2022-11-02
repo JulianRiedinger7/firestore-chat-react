@@ -1,4 +1,5 @@
 <h1 align='center'>Chat App</h1>
+<p align='center'>Aplicacion de mensajeria instantanea</p>
 
 ![captura del proyecto](/public/captura.png)
 
