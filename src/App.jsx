@@ -5,7 +5,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ChannelForm from './pages/ChannelForm';
 import Header from './components/Header';
 import { ToastContainer } from 'react-toastify';
-import Dashboard from './pages/Dashboard';
 
 function App() {
 	return (
@@ -27,15 +26,6 @@ function App() {
 						<ProtectedRoute>
 							<Header />
 							<ChannelForm />
-						</ProtectedRoute>
-					}
-				/>
-				<Route
-					path="/dashboard"
-					element={
-						<ProtectedRoute>
-							<Header />
-							<Dashboard />
 						</ProtectedRoute>
 					}
 				/>

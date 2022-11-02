@@ -40,7 +40,7 @@ const Chat = () => {
 				<h2 className="text-lg md:text-xl font-medium space-x-2">
 					<span>Selecciona o</span>
 					<Link
-						to="/dashboard"
+						to="/create-channel"
 						className="text-cyan-500 hover:text-cyan-700 transition-all ease-in-out"
 					>
 						crea
