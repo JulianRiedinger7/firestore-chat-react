@@ -136,14 +136,13 @@ const ChatForm = () => {
 					onClick={() => setShowPicker(!showPicker)}
 				/>
 
-				<div className="bg-cyan-500 rounded-lg px-2 py-1">
+				<button type="submit" className="bg-cyan-500 rounded-lg px-2 py-1">
 					<RiSendPlaneFill
-						type="submit"
 						size={30}
 						color={'#fff'}
 						className="cursor-pointer"
 					/>
-				</div>
+				</button>
 			</form>
 		</>
 	);
