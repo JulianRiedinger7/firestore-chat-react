@@ -60,7 +60,7 @@ const ChatForm = () => {
 						month: '2-digit',
 						year: 'numeric',
 						hour: '2-digit',
-						hour12: 'false',
+						hour12: false,
 						minute: '2-digit',
 						second: '2-digit',
 					}).format(date),
